@@ -1,33 +1,28 @@
----
-layout: compress
----
-
 <!doctype html>
-<html lang="en" class="no-js">
-  <head>
-    {% include head.html %}
-    {% include head/custom.html %}
-  </head>
-
-  <body>
-
-    {% include browser-upgrade.html %}
-    {% include masthead.html %}
-
-    <div id="main" role="main">
-      {% include sidebar.html %}
-    
-      <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-        {% if page.title %}<meta itemprop="headline" content="{{ page.title | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
-        <div class="page__inner-wrap">
-          <section class="page__content" itemprop="text">
-            {{ content }}
-          </section>
-        </div>
-      </article>
-    </div>
-
-    {% include scripts.html %}
-
-  </body>
+<html lang="en">
+<head>
+  {% assign asset_version = site.time | date: "%s" %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ site.title | escape }} — Academic Homepage</title>
+  <meta name="description" content="{{ site.description | escape }}">
+  <meta name="theme-color" content="#ffffff">
+  {% if site.url != "" %}<link rel="canonical" href="{{ page.url | absolute_url }}">{% endif %}
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ '/images/favicon-32.png' | relative_url }}?v={{ asset_version }}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ '/images/favicon-16.png' | relative_url }}?v={{ asset_version }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ '/images/apple-touch-icon.png' | relative_url }}?v={{ asset_version }}">
+  <link rel="stylesheet" href="{{ '/assets/css/homepage.css' | relative_url }}?v={{ asset_version }}">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  {% include masthead.html %}
+  <div class="site-shell">
+    {% include sidebar.html %}
+    <main id="main" tabindex="-1">{{ content }}</main>
+  </div>
+  <footer class="site-footer">
+    <span>© {{ site.time | date: '%Y' }} {{ site.author.name | escape }}</span>
+    <span class="footer-credits"><span>Based on <a href="https://github.com/RayeRen/acad-homepage.github.io">AcadHomepage</a></span><a href="https://www.flaticon.com/free-icon/owl_244352" title="Owl icons created by Magnific - Flaticon">Owl icon by Magnific / Flaticon</a></span>
+  </footer>
+</body>
 </html>

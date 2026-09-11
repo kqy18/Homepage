@@ -1,58 +1,59 @@
 ---
 permalink: /
-title: ""
-excerpt: ""
-author_profile: true
-redirect_from: 
+layout: default
+redirect_from:
   - /about/
   - /about.html
 ---
+<section id="about" class="qk-biography" aria-labelledby="about-title">
+  <h2 id="about-title">About me</h2>
+  <p>Hello! I am a master’s student in the <a href="https://www.cs.tsinghua.edu.cn/csen/">Department of Computer Science and Technology</a> at <a href="https://www.tsinghua.edu.cn/en/">Tsinghua University</a>, where I am advised by <a href="https://www.cs.tsinghua.edu.cn/csen/info/1312/4393.htm">Prof. Fuchun Sun</a>. I received my bachelor’s degree in Computer Science and Technology from <a href="https://ev.buaa.edu.cn/">Beihang University</a> in 2025, with a minor in Mathematics and Applied Mathematics. During my undergraduate studies, I received the <a href="#honors">Shen Yuan Medal</a>, the <a href="#honors">May Fourth Youth Medal</a>, and the <a href="#honors">National Scholarship</a>.  </p>
+  <p>I am seeking PhD opportunities for Fall 2028 and summer research internship opportunities for Summer 2027. My research interests are <strong>Reinforcement Learning and Dexterous Manipulation</strong>, with the long-term goal of bringing intelligence into the physical world. I am currently exploring how to improve reinforcement learning with limited samples and how to improve policy performance when the available reward signals are suboptimal.</p>
+</section>
 
-{% if site.google_scholar_stats_use_cdn %}
-{% assign gsDataBaseUrl = "https://cdn.jsdelivr.net/gh/" | append: site.repository | append: "@" %}
-{% else %}
-{% assign gsDataBaseUrl = "https://raw.githubusercontent.com/" | append: site.repository | append: "/" %}
-{% endif %}
-{% assign url = gsDataBaseUrl | append: "google-scholar-stats/gs_data_shieldsio.json" %}
+<section id="publications" aria-labelledby="publications-title">
+  <div class="section-heading"><h2 id="publications-title">Selected publications</h2><span class="section-meta">Research</span></div>
+  <div class="publications">
+  {% for paper in site.data.publications %}
+    <article class="publication{% if paper.draft %} publication-draft{% endif %}">
+      <figure class="paper-figure paper-figure--{{ paper.venue | downcase }}">
+        <a class="paper-figure-image" href="{{ paper.figure_full | relative_url }}" target="_blank" rel="noopener" aria-label="View full-size illustration for {{ paper.title | escape }} (opens in a new tab)">
+          <img src="{{ paper.figure | relative_url }}" width="{{ paper.figure_width }}" height="{{ paper.figure_height }}" alt="{{ paper.figure_alt | escape }}" loading="lazy" decoding="async">
+        </a>
+        <figcaption><span class="paper-venue">{{ paper.venue | escape }} {{ paper.year }}</span></figcaption>
+      </figure>
+      <div class="publication-body">
+        {% assign paper_title_url = paper.paper_url | default: paper.title_url %}
+        <h3>{% if paper_title_url %}<a href="{{ paper_title_url | relative_url | escape }}"{% if paper.paper_tbr %} title="Paper and code to be released"{% endif %}>{{ paper.title | escape }}</a>{% else %}{{ paper.title | escape }}{% endif %}</h3>
+        <p class="authors">{% for author in paper.authors %}{% if author.url %}<a href="{{ author.url | escape }}">{% endif %}{% if author.name == site.author.name %}<strong>{{ author.name | escape }}</strong>{% else %}{{ author.name | escape }}{% endif %}{% if author.url %}</a>{% endif %}{% if author.equal %}<sup title="Equal contribution">*</sup>{% endif %}{% unless forloop.last %}, {% endunless %}{% endfor %}</p>
+        <p class="publication-status">{{ paper.status | escape }}</p>
+        {% if paper.summary %}<p class="publication-summary">{{ paper.summary | escape }}</p>{% endif %}
+        {% if paper.paper_url or paper.code_url or paper.project_url or paper.video_url or paper.paper_tbr or paper.code_tbr %}
+        <div class="paper-links" id="{{ paper.venue | slugify }}-{{ paper.year }}-resources">
+          {% if paper.paper_url %}<a href="{{ paper.paper_url | relative_url | escape }}">Paper</a>{% elsif paper.paper_tbr %}<span class="paper-link-pending" title="To be released">Paper (TBR)</span>{% endif %}
+          {% if paper.code_url %}<a href="{{ paper.code_url | escape }}">Code</a>{% elsif paper.code_tbr %}<span class="paper-link-pending" title="To be released">Code (TBR)</span>{% endif %}
+          {% if paper.project_url %}<a href="{{ paper.project_url | escape }}">Project</a>{% endif %}
+          {% if paper.video_url %}<a href="{{ paper.video_url | relative_url | escape }}" target="_blank" rel="noopener" aria-label="Watch the {{ paper.venue | escape }} {{ paper.year }} demo (opens in a new tab)">Video</a>{% endif %}
+        </div>
+        {% endif %}
+      </div>
+    </article>
+  {% endfor %}
+  </div>
+  <p class="contribution-note">* Equal contribution.</p>
+</section>
 
-<span class='anchor' id='about-me'></span>
+<section id="honors" aria-labelledby="honors-title">
+  <div class="section-heading"><h2 id="honors-title">Honors & awards</h2><span class="section-meta">Selected</span></div>
+  <ul class="honors-list">
+  {% for honor in site.data.honors %}
+    <li><div><h3>{{ honor.name }}</h3><p>{{ honor.institution }}{% if honor.detail != "" %}<span class="honor-detail">{{ honor.detail }}</span>{% endif %}</p>{% if honor.results_url or honor.news_url or honor.video_url %}<div class="honor-links">{% if honor.results_url %}<a href="{{ honor.results_url | escape }}">Official results</a>{% endif %}{% if honor.news_url %}<a href="{{ honor.news_url | escape }}">Tsinghua news</a>{% endif %}{% if honor.video_url %}<a href="{{ honor.video_url | escape }}">Team video</a>{% endif %}</div>{% endif %}</div>{% if honor.date != "" %}<span class="honor-year">{{ honor.date }}</span>{% endif %}</li>
+  {% endfor %}
+  </ul>
+</section>
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. Suspendisse condimentum, libero vel tempus mattis, risus risus vulputate libero, elementum fermentum mi neque vel nisl. Maecenas facilisis maximus dignissim. Curabitur mattis vulputate dui, tincidunt varius libero luctus eu. Mauris mauris nulla, scelerisque eget massa id, tincidunt congue felis. Sed convallis tempor ipsum rhoncus viverra. Pellentesque nulla orci, accumsan volutpat fringilla vitae, maximus sit amet tortor. Aliquam ultricies odio ut volutpat scelerisque. Donec nisl nisl, porttitor vitae pharetra quis, fringilla sed mi. Fusce pretium dolor ut aliquam consequat. Cras volutpat, tellus accumsan mattis molestie, nisl lacus tempus massa, nec malesuada tortor leo vel quam. Aliquam vel ex consectetur, vehicula leo nec, efficitur eros. Donec convallis non urna quis feugiat.
-
-My research interest includes neural machine translation and computer vision. I have published more than 100 papers at the top international AI conferences with total <a href='https://scholar.google.com/citations?user=DhtAFkwAAAAJ'>google scholar citations <strong><span id='total_cit'>260000+</span></strong></a> (You can also use google scholar badge <a href='https://scholar.google.com/citations?user=DhtAFkwAAAAJ'><img src="https://img.shields.io/endpoint?url={{ url | url_encode }}&logo=Google%20Scholar&labelColor=f6f6f6&color=9cf&style=flat&label=citations"></a>).
-
-
-# 🔥 News
-- *2022.02*: &nbsp;🎉🎉 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
-- *2022.02*: &nbsp;🎉🎉 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
-
-# 📝 Publications 
-
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">CVPR 2016</div><img src='images/500x300.png' alt="sym" width="100%"></div></div>
-<div class='paper-box-text' markdown="1">
-
-[Deep Residual Learning for Image Recognition](https://openaccess.thecvf.com/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf)
-
-**Kaiming He**, Xiangyu Zhang, Shaoqing Ren, Jian Sun
-
-[**Project**](https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=DhtAFkwAAAAJ&citation_for_view=DhtAFkwAAAAJ:ALROH1vI_8AC) <strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong>
-- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
-</div>
-</div>
-
-- [Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet](https://github.com), A, B, C, **CVPR 2020**
-
-# 🎖 Honors and Awards
-- *2021.10* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
-- *2021.09* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
-
-# 📖 Educations
-- *2019.06 - 2022.04 (now)*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
-- *2015.09 - 2019.06*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
-
-# 💬 Invited Talks
-- *2021.06*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
-- *2021.03*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet.  \| [\[video\]](https://github.com/)
-
-# 💻 Internships
-- *2019.05 - 2020.02*, [Lorem](https://github.com/), China.
+<section id="education" aria-labelledby="education-title">
+  <div class="section-heading"><h2 id="education-title">Education</h2></div>
+  <div class="education-entry"><div><h3>Tsinghua University</h3><p>Master’s studies</p><p class="education-detail">Advised by Prof. Fuchun Sun</p></div><span class="education-year">2025–present</span></div>
+  <div class="education-entry"><div><h3>Beihang University</h3><p>Undergraduate studies in Computer Science and Technology</p><p class="education-detail">Minor in Mathematics and Applied Mathematics</p></div><span class="education-year">2021–2025</span></div>
+</section>

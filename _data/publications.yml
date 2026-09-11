@@ -1,0 +1,81 @@
+# Selected papers. Author order and equal-contribution markers are explicit.
+- venue: "CoRL"
+  year: 2026
+  title: "Minimal-Intervention Target Retrieval in Cluttered Scenes with Grasp-Conditioned Dependency Graphs"
+  authors:
+    - name: "Wanhao Niu"
+      equal: true
+      url: "https://openreview.net/profile?id=~Wanhao_Niu1"
+    - name: "Qiyan Ke"
+      equal: true
+      url: "https://openreview.net/profile?id=~Qiyan_Ke1"
+    - name: "Yuan Sun"
+      url: "https://openreview.net/profile?id=~Yuan_Sun14"
+    - name: "Chongrui Zhang"
+    - name: "Huaidong Zhou"
+      url: "https://openreview.net/profile?id=~Huaidong_Zhou1"
+    - name: "Yongfeng Rong"
+      url: "https://openreview.net/profile?id=~Yongfeng_Rong1"
+    - name: "Shuang Zhang"
+      url: "https://openreview.net/profile?id=~Shuang_Zhang5"
+    - name: "Fuchun Sun"
+      url: "https://openreview.net/profile?id=~Fuchun_Sun1"
+  status: "Accepted at CoRL 2026"
+  summary: "Grasp-conditioned dependency graphs model which objects obstruct a candidate grasp during approach and lifting. Trained on over 3.6 million labeled object–grasp edges across 500 scenes, a learned predictor estimates these dependencies. A short-prefix planner selects a grasp, removes predicted blockers, and replans after each intervention to reduce unnecessary object movements. We evaluate the framework through large-scale planning tests, closed-loop simulation, and hardware trials."
+  title_url: "#corl-2026-resources"
+  paper_tbr: true
+  code_tbr: true
+  figure: "/images/publications/corl-fig1.webp"
+  figure_full: "/images/publications/corl-fig1-full.jpg"
+  figure_alt: "CoRL Figure 1: grasp-specific blockers above, with the dependency-learning and retrieval pipeline below; the original left and right panels are stacked vertically."
+  figure_width: 900
+  figure_height: 1393
+  draft: false
+- venue: "Preprint"
+  year: 2026
+  title: "EAGG: Embodiment-Aligned Grasp Generation via Geometry-Aware Graph Conditioning"
+  authors:
+    - name: "Wanhao Niu"
+    - name: "Qiyan Ke"
+    - name: "Yuan Sun"
+    - name: "Hao Sun"
+    - name: "Jie Xu"
+    - name: "Muyuan Ma"
+    - name: "Ruiqi Hu"
+    - name: "Fuchun Sun"
+  status: "Under review · arXiv:2606.18092"
+  summary: "EAGG unifies grasp generation across robotic hands and grippers using topology-aware embodiment graphs and compact control spaces. Iterative geometry conditioning tracks the articulated hand throughout sampling. The shared model approaches the performance of specialized models and transfers to new embodiments, with real-world validation on FreedomHand, Dahuan AG95, and SOARM101."
+  paper_url: "https://arxiv.org/abs/2606.18092"
+  code_url: "https://github.com/wanhaoniu/EAGG"
+  project_url: "https://wanhaoniu.github.io/EAGG/"
+  figure: "/images/publications/eagg-overview.webp"
+  figure_full: "/images/publications/eagg-overview-full.jpg"
+  figure_alt: "EAGG method overview above grasp generation examples and real-world executions with FreedomHand, Dahuan AG95, and SOARM101 below."
+  figure_width: 900
+  figure_height: 1132
+  draft: false
+- venue: "IROS"
+  year: 2026
+  title: "Ask Professor G. How to Grasp: Training-Free Cross-Gripper Grasping from an RGB-D Observation and a Gripper URDF"
+  authors:
+    - name: "Wanhao Niu"
+      equal: true
+    - name: "Yuan Sun"
+      equal: true
+    - name: "Qiyan Ke"
+      equal: true
+    - name: "Jie Xu"
+    - name: "Hao Sun"
+    - name: "Muyuan Ma"
+    - name: "Fuchun Sun"
+  status: "Accepted at IROS 2026"
+  summary: "We combine foundation-model semantic guidance with test-time optimization to synthesize grasps from RGB-D observations and gripper URDFs. The framework adapts to unseen grippers without retraining and improves grasp success and semantic compliance in simulation and hardware."
+  paper_url: "/files/ask-professor-g-iros2026.pdf"
+  video_url: "/files/ask-professor-g-iros2026-demo.mp4"
+  code_url: "https://github.com/sunyuan1111/ASK-Professor-G-How-to-Grasp"
+  figure: "/images/publications/iros-fig1.webp"
+  figure_full: "/images/publications/iros-fig1-full.jpg"
+  figure_alt: "IROS Figure 1: foundation-model guidance and test-time optimization for training-free grasping across grippers."
+  figure_width: 900
+  figure_height: 888
+  draft: false

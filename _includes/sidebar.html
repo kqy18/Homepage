@@ -1,14 +1,16 @@
-{% if page.author_profile or layout.author_profile or page.sidebar %}
-  <div class="sidebar sticky">
-  {% if page.author_profile or layout.author_profile %}{% include author-profile.html %}{% endif %}
-  {% if page.sidebar %}
-    {% for s in page.sidebar %}
-      {% if s.image %}
-        <img src= "{{ s.image }}" alt="{% if s.image_alt %}{{ s.image_alt }}{% endif %}">
-      {% endif %}
-      {% if s.title %}<h3>{{ s.title }}</h3>{% endif %}
-      {% if s.text %}{{ s.text | markdownify }}{% endif %}
-    {% endfor %}
-  {% endif %}
+<aside class="sidebar" aria-label="Personal information">
+  <div class="profile" itemscope itemtype="https://schema.org/Person">
+    <img class="portrait" src="{{ site.author.avatar | relative_url }}?v={{ asset_version }}" width="200" height="200" alt="Portrait of {{ site.author.name | escape }}" itemprop="image">
+    <div class="profile-text">
+      <h1 itemprop="name">{{ site.author.name | escape }}</h1>
+      <p class="profile-bio">{{ site.author.bio | escape }}</p>
+      {% if site.author.affiliation %}<p class="profile-affiliation">{{ site.author.affiliation | escape }}</p>{% endif %}
+      {% if site.author.location %}<p class="location"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>{{ site.author.location | escape }}</p>{% endif %}
+      <ul class="profile-links">
+        {% if site.author.email != "" %}<li><a href="mailto:{{ site.author.email | escape }}">Email</a></li>{% endif %}
+        {% if site.author.github != "" %}<li><a href="https://github.com/{{ site.author.github | escape }}">GitHub</a></li>{% endif %}
+        {% if site.author.googlescholar != "" %}<li><a href="{{ site.author.googlescholar | escape }}">Google Scholar</a></li>{% endif %}
+      </ul>
+    </div>
   </div>
-{% endif %}
+</aside>
