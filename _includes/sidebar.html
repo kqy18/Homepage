@@ -9,6 +9,7 @@
       <ul class="profile-links">
         {% if site.author.email != "" %}<li><a href="mailto:{{ site.author.email | escape }}">Email</a></li>{% endif %}
         {% if site.author.github != "" %}<li><a href="https://github.com/{{ site.author.github | escape }}">GitHub</a></li>{% endif %}
+        <li><a href="{{ '/files/Qiyan_Ke_CV_Oct_2026.pdf' | relative_url }}" target="_blank" rel="noopener">CV (Oct 2026)</a></li>
         {% if site.author.googlescholar != "" %}<li><a href="{{ site.author.googlescholar | escape }}">Google Scholar</a></li>{% endif %}
       </ul>
     </div>
